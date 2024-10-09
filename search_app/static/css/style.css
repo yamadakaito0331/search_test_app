@@ -1,0 +1,257 @@
+form.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: auto;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* フォームラベルのスタイル */
+form.search-form label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* インプット要素のスタイル */
+form.search-form select,
+form.search-form input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+/* インプット要素にフォーカスが当たった時のスタイル */
+form.search-form select:focus,
+form.search-form input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* ボタンのスタイル */
+form.search-form button {
+    padding: 0.75rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* ボタンにホバー時のスタイル */
+form.search-form button:hover {
+    background-color: #0056b3;
+}
+
+/* ボタンのフォーカス時のスタイル */
+form.search-form button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* ページネーションのスタイル */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    padding: 1rem 0;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #0056b3;
+}
+
+/* 現在のページ番号のスタイル */
+.pagination span {
+    padding: 8px 15px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    color: #333;
+    margin: 0 5px;
+    display: inline-block;
+}
+form.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 450px;
+    margin: auto;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ラベルと入力フィールドのグループ */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+/* ラベルのスタイル */
+.form-label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* セレクトボックスとインプットフィールド */
+.form-select,
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+/* フォーカス時のスタイル */
+.form-select:focus,
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* ボタンのスタイル */
+.btn-submit {
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ボタンのホバー時 */
+.btn-submit:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ボタンのフォーカス時 */
+.btn-submit:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* モバイル対応 */
+@media (max-width: 600px) {
+    form.search-form {
+        padding: 1rem;
+    }
+
+    .form-select,
+    .form-input {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-submit {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+ul.product-list {
+    list-style-type: none; /* デフォルトのリストマーカーを削除 */
+    padding: 0;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* 各製品アイテムのスタイル */
+.product-item {
+    width: 43%;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 製品アイテムのホバー時のスタイル */
+.product-item:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 空の製品リストメッセージ */
+.product-item-empty {
+    padding: 1rem;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    background-color: #fff;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+}
+.product-link {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+/* リンクのホバー時のスタイル */
+.product-link:hover {
+    color: #0056b3;
+}
+.product-list-container {
+    text-align: center; /* 中央揃え */
+}
+
+/* リストのスタイル（必要に応じて） */
+.product-list {
+    list-style-type: none; /* デフォルトのリストマーカーを削除 */
+    padding: 0; /* パディングをリセット */
+    margin: 0; /* マージンをリセット */
+    display: inline-block; /* 横並びを解除して中央寄せ */
+}
+
+/* 各製品アイテムのスタイル */
+.navigation {
+    text-align: center; /* 中央揃え */
+    margin-bottom: 20px; /* リストとの間隔 */
+}
+
+.nav-link {
+    margin: 0 10px; /* リンク間のマージン */
+    padding: 8px 12px; /* パディングを追加 */
+    background-color: #007bff; /* 背景色 */
+    color: #fff; /* テキスト色 */
+    text-decoration: none; /* 下線を削除 */
+    border-radius: 5px; /* 角を丸くする */
+    transition: background-color 0.3s; /* ホバー時の変化をスムーズに */
+}
+
+.nav-link:hover {
+    background-color: #0056b3; /* ホバー時の背景色 */
+}

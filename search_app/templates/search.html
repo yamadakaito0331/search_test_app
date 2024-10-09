@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索フォーム</title>
+    
+    <!-- CSSファイルを読み込む -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- 検索フォーム -->
+    <form method="get" class="search-form"> 
+
+        <form method="get">
+            {{ form.as_p }} 
+            <div class="form-group">
+                <label for="category" class="form-label">カテゴリ:</label>
+                <select name="category" class="form-control">
+                    <option value="">すべて</option>
+                    {% for category in categories %}
+                        <option value="{{ category.name }}" {% if category.name == selected_category %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- 価格や並び替えのフィールドも追加 -->
+            <label for="min_price">最低価格:</label>
+            <input type="number" name="min_price" min="0" class="form-control">
+            
+            <label for="max_price">最高価格:</label>
+            <input type="number" name="max_price" min="0" class="form-control">
+            
+            <label for="sort">並び替え:</label>
+            <select name="sort" class="form-control">
+                <option value="name">名前順</option>
+                <option value="price_asc">価格が安い順</option>
+                <option value="price_desc">価格が高い順</option>
+            </select>
+        
+            <button type="submit" class="btn btn-primary mt-3">検索</button>
+        </form>
+
+</body>
+<div class="product-list-container">
+    <ul class="product-list"> 
+        {% for product in page_obj %} 
+            <li class="product-item">
+                <a href="{% url 'product_detail' product.pk %}" class="product-link">
+                    {{ product.name }} - ¥{{ product.price|floatformat:0 }}円
+                </a>
+            </li> 
+        {% empty %} 
+            <li class="product-item-empty">No results found</li> 
+        {% endfor %} 
+    </ul>
+</div>
+     
+    <div class="pagination"> 
+        <span class="step-links"> 
+            {% if page_obj.has_previous %} 
+                <a href="?page=1">最初</a> 
+                <a href="?page={{ page_obj.previous_page_number }}">前へ</a> 
+            {% endif %} 
+     
+            <span>ページ {{ page_obj.number }} /  
+    {{ page_obj.paginator.num_pages }}</span> 
+     
+            {% if page_obj.has_next %} 
+                <a href="?page={{ page_obj.next_page_number }}">次へ</a> 
+                <a href="?page={{ page_obj.paginator.num_pages }}">最後</a> 
+            {% endif %} 
+        </span> 
+    </div>
+
+    <div class="navigation">
+        <a href="{% url 'product_create' %
