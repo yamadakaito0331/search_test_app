@@ -1,15 +1,16 @@
+{% extends "base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>検索フォーム</title>
+    {%block title%}検索トップ{% endblock %}
     
     <!-- CSSファイルを読み込む -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
-<body>
+{% block content %}
 
     <!-- 検索フォーム -->
     <form method="get" class="search-form"> 
@@ -27,30 +28,26 @@
                     {% endfor %}
                 </select>
             </div>
-            <!-- 価格や並び替えのフィールドも追加 -->
-            <label for="min_price">最低価格:</label>
-            <input type="number" name="min_price" min="0" class="form-control">
-            
-            <label for="max_price">最高価格:</label>
-            <input type="number" name="max_price" min="0" class="form-control">
             
             <label for="sort">並び替え:</label>
-            <select name="sort" class="form-control">
-                <option value="name">名前順</option>
-                <option value="price_asc">価格が安い順</option>
-                <option value="price_desc">価格が高い順</option>
+            <select name="sort" id="sort" class="form-control">
+                <option value="name" {% if sort_option == 'name' %}selected{% endif %}>名前順</option>
+                <option value="release_date" {% if sort_option == 'release_date' %}selected{% endif %}>リリース日順（昇順）</option>
+                <option value="release_date_desc" {% if sort_option == 'release_date_desc' %}selected{% endif %}>リリース日順（降順）</option>
             </select>
+            
         
             <button type="submit" class="btn btn-primary mt-3">検索</button>
         </form>
 
-</body>
+
 <div class="product-list-container">
     <ul class="product-list"> 
         {% for product in page_obj %} 
             <li class="product-item">
                 <a href="{% url 'product_detail' product.pk %}" class="product-link">
-                    {{ product.name }} - ¥{{ product.price|floatformat:0 }}円
+                    <img src="{{ product.image.url }}"style="max-width: 300px;"><br>
+                    {{ product.title }} <br> {{ product.artist}}
                 </a>
             </li> 
         {% empty %} 
@@ -59,22 +56,22 @@
     </ul>
 </div>
      
-    <div class="pagination"> 
-        <span class="step-links"> 
-            {% if page_obj.has_previous %} 
-                <a href="?page=1">最初</a> 
-                <a href="?page={{ page_obj.previous_page_number }}">前へ</a> 
-            {% endif %} 
-     
-            <span>ページ {{ page_obj.number }} /  
-    {{ page_obj.paginator.num_pages }}</span> 
-     
-            {% if page_obj.has_next %} 
-                <a href="?page={{ page_obj.next_page_number }}">次へ</a> 
-                <a href="?page={{ page_obj.paginator.num_pages }}">最後</a> 
-            {% endif %} 
-        </span> 
+<div class="pagination">
+    <div class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link first">最初</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link previous">前へ</a>
+        {% endif %}
+    
+        <span class="pagination-info">
+            ページ {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+    
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link next">次へ</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination-link last">最後</a>
+        {% endif %}
     </div>
-
-    <div class="navigation">
-        <a href="{% url 'product_create' %
+</div>
+{% endblock content %}
+</html>

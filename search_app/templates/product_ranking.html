@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%block title%}閲覧数ランキング{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+{% block content %}
+<div class="ranking-body">
+    <div class="container">
+        <h1 class="title">楽曲閲覧数ランキング</h1>
+        <ul class="product-ranking">
+            {% for product in products %}
+                <div class="product-iitem">
+                    <span class="rank">{{ forloop.counter }}位</span>
+                    <span class="product-nname">
+                    <a href="{% url 'product_detail' product.pk %}">
+                        <img src="{{ product.image.url }}"style="max-width: 300px;"><br>
+                        {{ product.title }}
+                        {{ product.artist }}
+                    </a>
+                    </span>
+                    <span class="view-count">{{ product.view_count }} 閲覧</span>
+                </div>
+            {% endfor %}
+        </ul>
+        <div class="navigation"> 
+            <a href="{% url 'search_view' %}" class="btn btn-secondary">最初の画面に戻る</a> 
+        </div> 
+    </div>
+{% endblock content %}
+</html>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h1 class="profile-title">{{ user.username }}さんのお気に入り楽曲</h1>
+
+    <div class="favorite-list">
+        {% for favorite in favorite_songs %}
+            <div class="favorite-item">
+                <a href="{% url 'product_detail' favorite.product.pk %}" class="favorite-link">
+                    <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.title }}" class="favorite-image">
+                    <div class="favorite-info">
+                        <h3 class="favorite-title">{{ favorite.product.title }}</h3>
+                        <p class="favorite-artist">{{ favorite.product.artist }}</p>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p class="no-favorites">お気に入りの楽曲はまだありません。</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

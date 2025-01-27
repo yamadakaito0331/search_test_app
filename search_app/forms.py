@@ -6,16 +6,24 @@ class SearchForm(forms.Form):
         label='検索キーワード', 
         max_length=100, 
         required=False, 
-        widget=forms.TextInput(attrs={'placeholder': '検索したいキーワードを入力'})    
+        widget=forms.TextInput(attrs={'placeholder': '検索したい曲やアーティストを入力'})    
     ) 
  
 class ProductForm(forms.ModelForm): 
     class Meta: 
         model = Product 
-        fields = ['name', 'description', 'price', 'category']
+        fields = ['title', 'artist', 'album','youtube','apple_music','category','image','release_date']
         labels = {
-            'name': '名前',
-            'description': '詳細',  
-            'price' : '価格',
-            'category' : 'カテゴリー'
+            'title': '曲名',
+            'artist': 'アーティスト',  
+            'album' : 'アルバム',
+            'youtube' : 'YouTubeのURL',
+            'apple_music' : 'Apple MusicのURL',
+            'category':'ジャンル',
+            'image':'写真',
+            'release_date':'リリース日',
+        }
+        
+        widgets = {
+            'release_date': forms.DateInput(attrs={'type': 'date'}),
         }

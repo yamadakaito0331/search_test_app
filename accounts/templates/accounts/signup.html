@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>新規登録</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <div class="signup-container">
+        <h2 class="signup-heading">新規登録</h2>
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-btn">登録</button>
+        </form>
+        <p class="login-link">すでにアカウントをお持ちですか？ <a href="{% url 'login' %}" class="auth-link">ログイン</a></p>
+    </div>
+</body>
+</html>
